@@ -1,0 +1,58 @@
+{% extends 'recommender/base_file.html' %}
+{% block title  %}Home{% endblock %}
+{% block body %}
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        <!-- Left Album Info -->
+        <div class="col-sm-4 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <a href="">
+                        {% if album.movie_poster %}
+                            <img src="{{ album.movie_poster }}" class="img-responsive">
+                        {% else %}
+                            <h3>No image to display</h3>
+                        {% endif %}
+                    </a>
+                    <h1>{{ album.movie_name }} <span class="badge">{{ album.movie_rating }}</span></h1>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Song Info -->
+        <div class="col-sm-8 col-md-9">
+
+
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <h3>Information</h3>
+
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+
+                    <h4><b>Year: </b>{{album.movie_year}}</h4>
+                <h4><b>Plot: </b>{{album.movie_plot}}</h4>
+                <h4><b>Director:</b> {{album.movie_director}}</h4>
+                    <h4><b>Stars: </b> {{album.movie_stars}}</h4>
+                    <h4><b>Runtime: </b> {{album.movie_runtime}}</h4>
+                    <h4><b>BoxOffice: </b> {{album.movie_earn}}</h4>
+                    <h4><b>IMDB rating: </b> {{album.movie_rating}}/10</h4>
+                    <h4><b>Awards : </b> {{album.awards}}</h4>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+{% endblock %}

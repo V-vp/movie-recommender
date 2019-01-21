@@ -1,0 +1,76 @@
+{% extends 'recommender/base_file.html' %}
+{% block title %}Movies{% endblock %}
+<style>
+        .row-content {
+            border-bottom: 1px ridge;
+        }
+        body{
+            background-image: url(../../static/img/background.png);
+        }
+        </style>
+{% block body %}
+    <p style="padding:10px;"></p>
+    <div class="container">
+    <div class="col-sm-11 col-sm-offset-1">
+            <h1>{{ user.username }}'s Movies</h1>
+    </div>
+        {% load static %}
+        <div class="row row-content">
+
+
+
+                    <div class="col-sm-offset-1 col-sm-3 col-xs-offset-1 col-xs-3">
+                         <a href="#"><img class="media-object media-thumbnail img-responsive" src="{{ info.movie_poster }}" alt="image 1"></a>
+                    </div>
+                <div class="col-sm-8 col-xs-8">
+                    <h2 class="media-heading"> {{ info.movie_name }} <span class="badge"> {{info.movie_rating}} / 10</span></h2>
+                    
+                    <h4><b>Year: </b>{{info.movie_year}}</h4>
+                <h4><b>Plot: </b>{{info.movie_plot}}</h4>
+                <h4><b>Director:</b> {{info.movie_director}}</h4>
+                    <h4><b>Stars: </b> {{info.movie_stars}}</h4>
+                    <h4><b>Runtime: </b> {{info.movie_runtime}}</h4>
+                    <h4><b>BoxOffice: </b> {{info.movie_earn}}</h4>
+                </div>
+
+        </div>
+        
+        <div class="row row-content">
+            
+            <div class="col-sm-offset-1 col-sm-3 col-xs-offset-1 col-xs-3">
+                         <a href="#"><img class="media-object media-thumbnail img-responsive" src="{{ info1.movie_poster }}" alt="image 1"></a>
+                    </div>
+                <div class="col-sm-8 col-xs-8">
+                    <h2 class="media-heading"> {{ info1.movie_name }} <span class="badge"> {{info1.movie_rating}} / 10</span></h2>
+
+                    <h4><b>Year: </b>{{info1.movie_year}}</h4>
+                <h4><b>Plot: </b>{{info1.movie_plot}}</h4>
+                <h4><b>Director:</b> {{info1.movie_director}}</h4>
+                    <h4><b>Stars: </b> {{info1.movie_stars}}</h4>
+                    <h4><b>Runtime: </b> {{info1.movie_runtime}}</h4>
+                    <h4><b>BoxOffice: </b> {{info1.movie_earn}}</h4>
+                </div>
+        </div>
+        <div class="row row-content">
+            
+            <div class="col-sm-offset-1 col-sm-3 col-xs-offset-1 col-xs-3">
+                         <a href="#"><img class="media-object media-thumbnail img-responsive" src="{{ info2.movie_poster }}" alt="image 1"></a>
+                    </div>
+                <div class="col-sm-8 col-xs-8">
+                   <h2 class="media-heading"> {{ info2.movie_name }} <span class="badge"> {{info2.movie_rating}} / 10</span></h2>
+
+                    <h4><b>Year: </b>{{info2.movie_year}}</h4>
+                <h4><b>Plot: </b>{{info2.movie_plot}}</h4>
+                <h4><b>Director:</b> {{info2.movie_director}}</h4>
+                    <h4><b>Stars: </b> {{info2.movie_stars}}</h4>
+                    <h4><b>Runtime: </b> {{info2.movie_runtime}}</h4>
+                    <h4><b>BoxOffice: </b> {{info2.movie_earn}}</h4>
+                </div>
+        </div>
+
+
+    
+    </div>
+    <p style="padding:40px;"></p>
+
+{% endblock %}

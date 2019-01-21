@@ -1,0 +1,111 @@
+{% extends 'recommender/base_file.html' %}
+{% block title  %}Home{% endblock %}
+{% block body %}
+<div class="albums-container container-fluid">
+
+    <!-- Albums -->
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>{{ user.username }}'s Movies</h3>
+
+
+        </div>
+        {% if albums %}
+            {% for album in albums %}
+                <div class="col-sm-4 col-lg-2">
+                    <div class="thumbnail">
+                        <a href="{% url 'detail' pk=album.pk %}">
+                            <img src="{{ album.movie_poster }}" class="img-responsive">
+                        </a>
+
+                        <div class="caption">
+                            <h2>{{ album.movie_name }}</h2>
+
+
+                            <a href="{% url 'detail' pk=album.pk %}" class="btn btn-primary btn-sm" role="button">View Details</a>
+
+
+                            <form action="{% url 'delete' pk=album.pk %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="album_pk" value="{{ album.pk }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </form>
+
+                            <!-- Favorite Album -->
+
+                            <!--<h1>{{album.user_rating}}</h1>-->
+                            <a href="{% url 'rating1' pk=album.pk %}" class="btn btn-default btn-sm btn-favorite" role="button">
+                                <span class="glyphicon glyphicon-star {% if album.star1 %}active{% endif %}"></span>
+                            </a>
+                            <a href="{% url 'rating2' pk=album.pk %}" class="btn btn-default btn-sm btn-favorite" role="button">
+                                <span class="glyphicon glyphicon-star {% if album.star2 %}active{% endif %}"></span>
+                            </a>
+                            <a href="{% url 'rating3' pk=album.pk %}" class="btn btn-default btn-sm btn-favorite" role="button">
+                                <span class="glyphicon glyphicon-star {% if album.star3 %}active{% endif %}"></span>
+                            </a>
+                            <a href="{% url 'rating4' pk=album.pk %}" class="btn btn-default btn-sm btn-favorite" role="button">
+                                <span class="glyphicon glyphicon-star {% if album.star4 %}active{% endif %}"></span>
+                            </a>
+                            <a href="{% url 'rating5' pk=album.pk %}" class="btn btn-default btn-sm btn-favorite" role="button">
+                                <span class="glyphicon glyphicon-star {% if album.star5 %}active{% endif %}"></span>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+                {% cycle '' '' '' '' '' '<div class="clearfix visible-lg"></div>' %}
+            {% endfor %}
+        {% else %}
+            <div class="col-sm-12">
+                <br>
+                <a href="">
+                    <button type="button" class="btn btn-success">
+                        <span class="glyphicon glyphicon-plus"></span>&nbsp; Add an Movies
+                    </button>
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+    var AlbumsListPage = {
+	init: function() {
+		this.$container = $('.albums-container');
+		this.render();
+		this.bindEvents();
+	},
+
+	render: function() {
+
+	},
+
+	bindEvents: function() {
+		$('.btn-favorite', this.$container).on('click', function(e) {
+			e.preventDefault();
+
+			var self = $(this);
+			var url = $(this).attr('href');
+			$.getJSON(url, function(result) {
+				if (result.success) {
+					$('.glyphicon-star', self).toggleClass('active');
+          location.reload(); 
+				}
+			});
+
+			return false;
+		});
+	}
+};
+
+
+$(document).ready(function() {
+	AlbumsListPage.init();
+});
+
+
+</script>
+
+{% endblock %}

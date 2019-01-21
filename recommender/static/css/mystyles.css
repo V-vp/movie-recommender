@@ -1,0 +1,33 @@
+
+.navbar-inverse{
+    margin: auto;
+    padding-bottom: 0px;
+     
+    
+}
+
+#myCarousel{
+    padding-top: 40px;
+}
+
+.tab-content {
+    border-left: 1.5px solid #ddd;
+    border-right: 1.5px solid #ddd;
+    border-bottom: 1.5px solid #ddd;
+    padding: 10px;
+}
+
+.row {
+    margin:5px auto;
+    padding: 50px 0px 50px 0px;
+    
+}
+
+.glyphicon-star {
+    color: #CCCCCC;
+    font-size: 16px;
+}
+
+.glyphicon-star.active {
+    color: #FDB230;
+}

@@ -1,0 +1,292 @@
+
+{% extends 'recommender/base_file.html' %}
+{% block title  %}Home{% endblock %}
+{% block movie_active %}active{% endblock %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-offset-1 col-sm-10 col-xs-12">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#home">What it does..?</a></li>
+</ul>
+
+<div class="tab-content">
+  <div id="home" class="tab-pane fade in active">
+    <h4>
+    You just have to rate the give genres according to your choice. It will select top 3 movies out of 9000 movies(1938-2016) from dataset that suits best to your choices.</h4>
+  </div>
+</div>   
+        </div>
+    
+    
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-offset-1 col-sm-10 col-xs-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">Genres </div>
+        <div class="panel-body">
+            {% if albums %}
+                {% for album in albums %}
+
+                    <p>{{album.movie_stars}}</p>
+                {% endfor %}
+            {% endif %}
+        <form class="form-horizontal" action="{% url 'recommend' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+            <div class="row">
+                <div class="container">
+                <div class="col-sm-12 col-xs-12">
+                <h4>I {{ user }} know it's 'annoying' to fill up entire form. So to ease up selection, default value is set to zero...! </h4>
+                </div>
+                <div class="form-group">
+                <div class=" col-xs-12 col-sm-offset-1 col-sm-5">
+                    <h4>   Animation</h4>
+                    <h4>
+                    <input type="radio" name="animation" value="0" checked="checked">0
+                    
+                    <input type="radio" name="animation" value="1">1
+                    <input type="radio" name="animation" value="2">2
+                    <input type="radio" name="animation" value="3">3
+                    <input type="radio" name="animation" value="4">4
+                    <input type="radio" name="animation" value="5">5</h4>
+                </div>
+                
+               
+                <div class="col-xs-12 col-sm-6">
+                    <h4>   Action</h4>
+                    <h4>
+                    <input type="radio" name="action" value="0" checked="checked">0
+                    
+                    <input type="radio" name="action" value="1">1
+                    <input type="radio" name="action" value="2">2
+                    <input type="radio" name="action" value="3">3
+                    <input type="radio" name="action" value="4">4
+                    <input type="radio" name="action" value="5">5</h4>
+                </div>
+                
+                </div>
+                
+                
+                <div class="form-group">
+                <div class=" col-sm-offset-1 col-sm-5 col-xs-12">
+                    <h4>   Adventure</h4>
+                    <h4>
+                    <input type="radio" name="adventure" value="0" checked="checked">0
+                    
+                    <input type="radio" name="adventure" value="1">1
+                    <input type="radio" name="adventure" value="2">2
+                    <input type="radio" name="adventure" value="3">3
+                    <input type="radio" name="adventure" value="4">4
+                    <input type="radio" name="adventure" value="5">5</h4>
+                </div>
+                
+               
+                <div class="col-sm-6 col-xs-12">
+                    <h4>   Children</h4>
+                    <h4>
+                    <input type="radio" name="children" value="0" checked="checked">0
+                    
+                    <input type="radio" name="children" value="1">1
+                    <input type="radio" name="children" value="2">2
+                    <input type="radio" name="children" value="3">3
+                    <input type="radio" name="children" value="4">4
+                    <input type="radio" name="children" value="5">5</h4>
+                </div>
+                
+                </div>
+                
+                
+              <div class="form-group">
+                <div class=" col-sm-offset-1 col-sm-5 col-xs-12">
+                    <h4>   Comedy</h4>
+                    <h4>
+                    <input type="radio" name="comedy" value="0" checked="checked">0
+                    
+                    <input type="radio" name="comedy" value="1">1
+                    <input type="radio" name="comedy" value="2">2
+                    <input type="radio" name="comedy" value="3">3
+                    <input type="radio" name="comedy" value="4">4
+                    <input type="radio" name="comedy" value="5">5</h4>
+                </div>
+                
+               
+                <div class="col-sm-6 col-xs-12">
+                    <h4>   Crime</h4>
+                    <h4>
+                    <input type="radio" name="crime" value="0" checked="checked">0
+                    
+                    <input type="radio" name="crime" value="1">1
+                    <input type="radio" name="crime" value="2">2
+                    <input type="radio" name="crime" value="3">3
+                    <input type="radio" name="crime" value="4">4
+                    <input type="radio" name="crime" value="5">5</h4>
+                </div>
+                
+                </div>
+                
+                 <div class="form-group">
+                <div class=" col-sm-offset-1 col-sm-5 col-xs-12">
+                    <h4>   Documentary</h4>
+                    <h4>
+                    <input type="radio" name="documentary" value="0" checked="checked">0
+                    
+                    <input type="radio" name="documentary" value="1">1
+                    <input type="radio" name="documentary" value="2">2
+                    <input type="radio" name="documentary" value="3">3
+                    <input type="radio" name="documentary" value="4">4
+                    <input type="radio" name="documentary" value="5">5</h4>
+                </div>
+                
+               
+                <div class="col-sm-6 col-xs-12">
+                    <h4>   Drama</h4>
+                    <h4>
+                    <input type="radio" name="drama" value="0" checked="checked">0
+                    
+                    <input type="radio" name="drama" value="1">1
+                    <input type="radio" name="drama" value="2">2
+                    <input type="radio" name="drama" value="3">3
+                    <input type="radio" name="drama" value="4">4
+                    <input type="radio" name="drama" value="5">5</h4>
+                </div>
+                
+                </div>
+                
+            <div class="form-group">
+                <div class=" col-sm-offset-1 col-sm-5 col-xs-12">
+                    <h4>   Fantasy</h4>
+                    <h4>
+                    <input type="radio" name="Fantasy" value="0" checked="checked">0
+                    
+                    <input type="radio" name="Fantasy" value="1">1
+                    <input type="radio" name="Fantasy" value="2">2
+                    <input type="radio" name="Fantasy" value="3">3
+                    <input type="radio" name="Fantasy" value="4">4
+                    <input type="radio" name="Fantasy" value="5">5</h4>
+                </div>
+                
+               
+                <div class="col-sm-6 col-xs-12">
+                    <h4>   Mystery</h4>
+                    <h4>
+                    <input type="radio" name="Mystery" value="0" checked="checked">0
+                    
+                    <input type="radio" name="Mystery" value="1">1
+                    <input type="radio" name="Mystery" value="2">2
+                    <input type="radio" name="Mystery" value="3">3
+                    <input type="radio" name="Mystery" value="4">4
+                    <input type="radio" name="Mystery" value="5">5</h4>
+                </div>
+                
+                </div>
+                
+                <div class="form-group">
+                <div class=" col-sm-offset-1 col-sm-5 col-xs-12">
+                    <h4>   Horror</h4>
+                    <h4>
+                    <input type="radio" name="Horror" value="0" checked="checked">0
+                    
+                    <input type="radio" name="Horror" value="1">1
+                    <input type="radio" name="Horror" value="2">2
+                    <input type="radio" name="Horror" value="3">3
+                    <input type="radio" name="Horror" value="4">4
+                    <input type="radio" name="Horror" value="5">5</h4>
+                </div>
+                
+               
+                <div class="col-sm-6 col-xs-12">
+                    <h4>   Romance</h4>
+                    <h4>
+                    <input type="radio" name="Romance" value="0" checked="checked">0
+                    
+                    <input type="radio" name="Romance" value="1">1
+                    <input type="radio" name="Romance" value="2">2
+                    <input type="radio" name="Romance" value="3">3
+                    <input type="radio" name="Romance" value="4">4
+                    <input type="radio" name="Romance" value="5">5</h4>
+                </div>
+                
+                </div>
+                <div class="form-group">
+                <div class=" col-sm-offset-1 col-sm-5 col-xs-12">
+                    <h4>   Sci-Fi</h4>
+                    <h4>
+                    <input type="radio" name="Sci_Fi" value="0" checked="checked">0
+                    
+                    <input type="radio" name="Sci_Fi" value="1">1
+                    <input type="radio" name="Sci_Fi" value="2">2
+                    <input type="radio" name="Sci_Fi" value="3">3
+                    <input type="radio" name="Sci_Fi" value="4">4
+                    <input type="radio" name="Sci_Fi" value="5">5</h4>
+                </div>
+                
+               
+                <div class="col-sm-6 col-xs-12">
+                    <h4>   Thriller</h4>
+                    <h4>
+                    <input type="radio" name="Thriller" value="0" checked="checked">0
+                    
+                    <input type="radio" name="Thriller" value="1">1
+                    <input type="radio" name="Thriller" value="2">2
+                    <input type="radio" name="Thriller" value="3">3
+                    <input type="radio" name="Thriller" value="4">4
+                    <input type="radio" name="Thriller" value="5">5</h4>
+                </div>
+                
+                </div>
+                <div class="form-group">
+                <div class=" col-sm-offset-1 col-sm-5 col-xs-12">
+                    <h4>   War</h4>
+                    <h4>
+                    <input type="radio" name="War" value="0" checked="checked">0
+                    
+                    <input type="radio" name="War" value="1">1
+                    <input type="radio" name="War" value="2">2
+                    <input type="radio" name="War" value="3">3
+                    <input type="radio" name="War" value="4">4
+                    <input type="radio" name="War" value="5">5</h4>
+                </div>
+                
+               
+                <div class="col-sm-6 col-xs-12">
+                    <h4>   Western</h4>
+                    <h4>
+                    <input type="radio" name="Western" value="0" checked="checked">0
+                    
+                    <input type="radio" name="Western" value="1">1
+                    <input type="radio" name="Western" value="2">2
+                    <input type="radio" name="Western" value="3">3
+                    <input type="radio" name="Western" value="4">4
+                    <input type="radio" name="Western" value="5">5</h4>
+                </div>
+                
+                </div>
+                        
+                <div class="form-group">
+                        <div class="col-xs-offset-2 col-xs-8 col-sm-offset-4 col-sm-2">
+                            <p style="padding: 5px;"></p>
+                            <button type="submit" name="submit" class="btn btn-primary"> Submit </button>
+                        </div>
+                       </div>    
+                
+               </div> 
+            </div>
+        
+        </form>
+        
+        
+        
+        
+        </div>
+    </div>
+    </div>
+    </div>
+    
+    
+</div>
+    
+    <p style="padding:40px;"></p>
+    
+{% endblock %}
+

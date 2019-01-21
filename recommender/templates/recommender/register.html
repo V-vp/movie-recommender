@@ -1,0 +1,48 @@
+{% extends 'recommender/base_file.html' %}
+{% block title %}Register{% endblock %}
+{% block register_active %}active{% endblock %}
+{% block body %}
+
+<div class="container">
+          <div id="loginbox" style="margin-top:10px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+              <div class="panel panel-info" >
+                      
+                      <div style="padding-top:30px" class="panel-body" >
+
+                        <center><h3>Register for an Account</h3></center>
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+                          <form id="registrationForm" class="form-horizontal" method="post" action="">
+                            {% csrf_token %}
+
+                              {% for field in form %}
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <span class="text-danger small">{{ field.errors }}</span>
+                                        </div>
+                                        <label class="control-label col-sm-2" for="song_title">{{ field.label_tag }}</label>
+                                        <div class="col-sm-10">{{ field }}</div>
+                                    </div>
+                              {% endfor %}
+
+
+                                  <div style="margin-top:10px" class="form-group">
+                                      <!-- Button -->
+
+                                      <div class="col-sm-12 controls">
+                                        <center>
+                                          <button type="submit" name="submitbtn" class="btn btn-primary" onclick="validateForm()"><span class="glyphion glyphicon-plus-sign"></span> Submit</button>
+                                          <button type="reset" name="resetbtn" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Reset</button>
+                                        </center>
+                                      </div>
+                                  </div>
+                              </form>
+
+
+                          </div>
+                      </div>
+          </div>
+      </div>
+
+{% endblock %}

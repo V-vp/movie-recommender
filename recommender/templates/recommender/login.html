@@ -1,0 +1,58 @@
+{% extends 'recommender/base_file.html' %}
+{% block title %}Log In{% endblock %}
+{% block login_active %}active{% endblock %}
+{% block body %}
+
+<div class="container">
+          <div id="loginbox" style="margin-top:10px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+              <div class="panel panel-info" >
+                      
+                      <div style="padding-top:30px" class="panel-body" >
+
+                        {% if error_message %}
+                            <p><strong>{{ error_message }}</strong></p>
+                        {% endif %}
+                          <form id="loginform" class="form-horizontal" role="form" method="POST" action="{% url 'login_user'%}">
+                            {% csrf_token %}
+                              <div style="margin-bottom: 25px" class="input-group">
+                                          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                          <input id="login-username" type="text" class="form-control" name="username" placeholder="Enter Username">
+                                      </div>
+
+                              <div style="margin-bottom: 25px" class="input-group">
+                                          <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                          <input id="login-password" type="password" class="form-control" name="password" placeholder="Enter Password">
+                                      </div>
+
+
+                                  <div style="margin-top:10px" class="form-group">
+                                      <!-- Button -->
+
+                                      <div class="col-sm-12 controls">
+                                        <center>
+                                          <input type="submit" name="submit" class="btn btn-primary">
+                                          <button type="reset" name="resetbtn" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Reset</button>
+                                        </center>
+                                      </div>
+                                  </div>
+
+
+                                  <div class="form-group">
+                                      <div class="col-md-12 control">
+                                          <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
+                                              <center>Not a Member !?!</center><br>
+
+                                          <br><center><a class="btn btn-warning text-center" href="{% url 'register' %}"><span class="glyphicon glyphicon-arrow-right"></span> Proceed to Registration now <span class="glyphicon glyphicon-arrow-right"></span></a></center>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </form>
+
+
+
+                          </div>
+                      </div>
+          </div>
+      </div>
+
+{% endblock %}
